@@ -1,0 +1,34 @@
+name: praktikum
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - pip
+  - ipykernel=5.1.4=py37h5ca1d4c_0
+  - ipython=7.11.1=py37h5ca1d4c_0
+  - ipython_genutils=0.2.0=py_1
+  - jupyter=1.0.0=py37_7
+  - jupyter_client=5.3.1=py_0
+  - jupyter_console=6.0.0=py37_0
+  - jupyter_core=4.5.0=py_0
+  - jupyterlab=1.0.2=py37hf63ae98_0
+  - jupyterlab_server=1.0.0=py_0
+  - requests=2.22.0=py37_1
+  - pip:
+    - beautifulsoup4==4.8.0
+    - matplotlib==3.1.0
+    - nltk==3.4.1
+    - numpy==1.18.3
+    - pandas==0.25.1
+    - plotly==4.1.0
+    - psycopg2-binary==2.8.4
+    - pymorphy2==0.8
+    - pymorphy2-dicts==2.4.393442.3710985
+    - pymystem3==0.2.0
+    - regex==2020.4.4
+    - scikit-learn==0.21.2
+    - scipy==1.4.1
+    - seaborn==0.9.0
+    - sqlalchemy==1.3.11
+    - statsmodels==0.10.1
+prefix: /opt/conda
