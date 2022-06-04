@@ -1,0 +1,5 @@
+VehicleType,Gearbox,Power,Model,Kilometer,FuelType,Brand,NotRepaired,Age
+small,manual,83,jazz,95000,petrol,honda,no,10
+small,manual,83,jazz,10000,petrol,honda,no,2
+crossover,auto,190,v60,135000,petrol,volvo,no,5
+crossover,auto,190,v60,35000,petrol,volvo,no,1
