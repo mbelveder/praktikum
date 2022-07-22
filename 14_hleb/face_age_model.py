@@ -12,7 +12,7 @@ def load_train(path):
     print(path)
     print('*' * 80)
 
-    labels_df = pd.read_csv('/datasets/faces/labels.csv')
+    labels_df = pd.read_csv(path + 'labels.csv')
 
     train_datagen = ImageDataGenerator(
         validation_split=0.25,
@@ -22,7 +22,7 @@ def load_train(path):
 
     train_datagen_flow = train_datagen.flow_from_dataframe(
         dataframe=labels_df,
-        directory=path,
+        directory=path + 'final_files',
         x_col='file_name',
         y_col='real_age',
         target_size=(224, 224),
@@ -36,7 +36,7 @@ def load_train(path):
 
 def load_test(path):
 
-    labels_df = pd.read_csv('/datasets/faces/labels.csv')
+    labels_df = pd.read_csv(path + 'labels.csv')
 
     validation_datagen = ImageDataGenerator(
         validation_split=0.25,
@@ -44,7 +44,7 @@ def load_test(path):
 
     val_datagen_flow = validation_datagen.flow_from_dataframe(
         dataframe=labels_df,
-        directory=path,
+        directory=path + 'final_files',
         x_col='file_name',
         y_col='real_age',
         target_size=(224, 224),
@@ -76,7 +76,7 @@ def create_model(input_shape):
 
     return model
 
-def train_model(model, train_data, test_data, batch_size=None, epochs=5,
+def train_model(model, train_data, test_data, batch_size=None, epochs=15,
                steps_per_epoch=None, validation_steps=None):
 
     model.fit(train_data,
