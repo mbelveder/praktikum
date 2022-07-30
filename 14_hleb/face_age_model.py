@@ -3,7 +3,6 @@ from tensorflow.keras.layers import Dense, GlobalAveragePooling2D
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
-# from tensorflow.keras.metrics import MeanSquaredError as MSE
 import pandas as pd
 
 def load_train(path):
@@ -18,7 +17,8 @@ def load_train(path):
         validation_split=0.25,
         rescale=1./255,
         horizontal_flip=True,
-        vertical_flip=True)
+        height_shift_range=0.1,
+        width_shift_range=0.1)
 
     train_datagen_flow = train_datagen.flow_from_dataframe(
         dataframe=labels_df,
@@ -50,6 +50,7 @@ def load_test(path):
         target_size=(224, 224),
         batch_size=32,
         class_mode="raw",
+        subset='validation',
         seed=12345)
 
     return val_datagen_flow
@@ -79,11 +80,24 @@ def create_model(input_shape):
 def train_model(model, train_data, test_data, batch_size=None, epochs=15,
                steps_per_epoch=None, validation_steps=None):
 
-    model.fit(train_data,
-              validation_data=test_data,
-              batch_size=batch_size, epochs=epochs,
-              steps_per_epoch=steps_per_epoch,
-              validation_steps=validation_steps,
-              verbose=2, shuffle=True)
+    history = model.fit(train_data,
+                    validation_data=test_data,
+                    batch_size=batch_size, epochs=epochs,
+                    steps_per_epoch=steps_per_epoch,
+                    validation_steps=validation_steps,
+                    verbose=2, shuffle=True)
+
+    print(history.history['loss'])
+    print()
+    print()
+    print(history.history['mae'])
+    print()
+    print()
+    print(history.history['val_loss'])
+    print()
+    print()
+    print(history.history['val_mae'])
+    print()
+    print()
 
     return model
